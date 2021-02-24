@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Subject } from 'rxjs-compat/Subject';
 import { Book } from '../models/Book.model';
-import firebase from 'firebase';
+import firebase from 'firebase/app';
 
 @Injectable({
   providedIn: 'root'
@@ -31,7 +31,7 @@ export class BooksService {
   getSingleBook(id: number) {
     return new Promise(
       (resolve, reject) => {
-        firebase.database().ref('/books' + id)
+        firebase.database().ref('/books/' + id)
           .once('value')
           .then(
             (data) => {
